@@ -6,13 +6,15 @@ var COLOR_SCALE = {};
 var UPDATE = {};
 const YEARS = ['2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020'];
 var SELECTED_YEAR = '2020';
-var SELECTED_BREED = 'golden retriever';
+var SELECTED_BREED = 'german shorthaired pointer';
 
 const clearAllFilters = () => {
    console.log('filters cleared');
    Object.keys(DATA[SELECTED_BREED]).forEach(k => {
       if (!(k.includes('rank_') || k == 'image')) FILTERS[k] = null;
    });
+   if ('clear_train' in UPDATE) UPDATE.clear_train();
+   if ('clear_protect' in UPDATE) UPDATE.clear_protect();
    if ('rank_bar' in UPDATE) UPDATE.rank_bar();
    if ('rank_line' in UPDATE) UPDATE.rank_line();
    if ('home_spider' in UPDATE) UPDATE.home_spider();
@@ -38,6 +40,10 @@ const clearAllFilters = () => {
    .duration(1000)
    .attr('stroke-width', '1px')
    .attr('stroke', 'black');
+   d3.selectAll('.axisHandle')
+   .transition()
+   .duration(1000)
+   .attr('fill', 'white');
 }
 
 // LOAD DATA
@@ -1058,6 +1064,15 @@ const plotTrainData = () => {
       'working_intelligence_level': {'value':null, 'element':null}
    };
 
+   const clearSelected = () => {
+      selected = {
+         'trainability': {'value':null, 'element':null}, 
+         'working_intelligence_level': {'value':null, 'element':null}
+      }
+   }
+
+   UPDATE['clear_train'] = clearSelected;
+
    const draw = () => {
       // Get data.
       var data = {};
@@ -1336,6 +1351,15 @@ const plotProtectData = () => {
       'openness_to_strangers': {'value':null, 'element':null}, 
       'barking_level': {'value':null, 'element':null}
    };
+
+   const clearSelected = () => {
+      selected = {
+         'openness_to_strangers': {'value':null, 'element':null}, 
+         'barking_level': {'value':null, 'element':null}
+      }
+   }
+
+   UPDATE['clear_protect'] = clearSelected;
 
    const radius = xScale.bandwidth()/3;
 
