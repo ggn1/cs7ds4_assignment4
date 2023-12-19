@@ -1,0 +1,231 @@
+Questions,Subject,Medium,Max Marks,Marks Obtained,Marks Obtained Chat GPT
+Demonstrate using logical equivalences that [(p ? q) ? -p] ? q is a tautology.,DS,Exam,2,2,2
+"Consider an application program containing integer, floating point, string, and Boolean instructions. Compute the total instruction count of a program to ensure that at least 50 instructions are of same type?",DS,Exam,2,2,0.5
+Compute the most simplified form of the compound proposition p ?(p ? q) using logical equivalences.,DS,Quiz,5,3,5
+Use De Morgan’s law to write negation of give sentence in intelligible English: Object Oriented Programming is interesting but difficult.,DS,Assignment,2,2,2
+Use logical equivalences to show that: (p ? q) ? (q ? ¬r) ? (p ? r) = p ? q,DS,Assignment,5,4,3
+Use logical equivalences to show that following compound proposition is tautology.                                                   [(p?q) ? (q?r)]?(p ? r),DS,Assignment,5,5,5
+"Prove by contraposition that: if the product of two integers is odd, then both of them are odd.",DS,Exam,7,7,7
+"In a group of 42 tourists, everyone speaks English or French; there are 35 English speakers and 18 French speakers. How many speak both English and French?",DS,Quiz,3,3,3
+Translate the statement “I am not confused unless I don’t perform well” in symbolic form. Please define your own proposition labels.,DS,Exam,2,2,2
+"Give inverse, converse and contrapositive of the following statement in natural language. 
+""If I don’t understand mathematics, then I don’t understand data science.""",DS,Quiz,3,2,3
+Translate the statement “I go to gym unless I prepare for exams.” in symbolic form. Please define your own proposition labels.,DS,Quiz,3,3,3
+Provide two examples of signal that are not a time signal? What is each of this signal used for? What is the dimension of each signal? Is the example continuous-time or discrete time?,S&S,Quiz,1,1,1
+What is the other name of a Continuous Time Unit Impulse Function?,S&S,Exam,0.5,0.5,0.5
+The fundamental period of the signal X (t) = 10 cos2(10 ?t) is ?,S&S,Exam,0.5,0.5,0.5
+Find the decimal value represented by each of the following IEEE 754 coded numbers: AEF00000,COD,Assignment,2,2,1
+"A set associative cache consists of 64 lines divided into four-line sets (i.e. four-way set associative). Main memory contains 4K blocks of 128 words each. The machine is word-addressable. Show the format of memory addresses (i.e. the breakdown of the address into tag, set and offset fields).",COD,Exam,3,3,3
+A write-back cache is implemented using a 4-way set associative mapping with 256 sets and 32-byte lines. How many bytes of data may be stored in the cache?,COD,Exam,4,4,4
+"Consider R format, place value in each field (in decimal) for following MIPS instructions:""and $t9, $s6, $s7""",COD,Assignment,2,2,1
+"Consider R format, place value in each field (in decimal) for following MIPS instructions:""sub $s5, $s3, $s4"" ",COD,Assignment,2,2,2
+Give pictorial representation of how chap protocol works?,CCN,Assignment,5,5,5
+Define different packets of chap protocol with the number of bytes assigned,CCN,Assignment,5,4,5
+Create multiple subnets from 10.0.0.0/8 network and use it for the configuration of entire diagram,CCN,Exam,10,8,9
+"Use a dynamic routing protocol to ensure the end to end connectivity.  On Router 0, configure the NAT.",CCN,Exam,10,7,8
+"Consider sending a 4500 byte datagram into a link that has an MTU of 1500 bytes. Suppose original datagram is stamped with Identification number of 747. Determine how many fragments are generated? What will be their fragment offset, total length, Identification and MF values",CCN,Exam,8,6,8
+"Some applications carry IP addresses and port numbers in payload part of a packet. Is this an issue for NAT or PAT operation? If yes, determine how this can be resolved.",CCN,Exam,5,5,5
+Write down the algorithm for IP Traffic defragmentation or fragment re-assembly,CCN,Exam,9,8,9
+Differentiate between csma and aloha prototcol,CCN,Exam,5,4,5
+Contrast between csma/cd and csma/ca,CCN,Exam,8,7,8
+What is the purpose of ieee standards organization?,CCN,Exam,5,4,5
+:Why has the PCM sampling time been set at 125 µsec,CCN,Exam,5,4,5
+"Three packets switching network each with n nodes. The first network is a star with a central switch, second is a bidirectional ring, a mesh that is fully interconnected. What are best, average and worst case",CCN,Exam,5,4,5
+"A CATV system has 100 commercial channels, all of them alternating programs with advertising. Is this more like TDM or FDM?",CCN,Exam,5,4,5
+How fast can a cable user receive data if the network is otherwise idle?,CCN,Exam,5,4,5
+What is the basic purpose of data link layer?,CCN,Exam,8,4,8
+Data link protocols have crc trailer in the end.Why?,CCN,Exam,8,6,8
+"If the unit exchanged at the data link layer is called a frame and the unit
+exchanged at the network level is called a packet, do frames encapsulate packets or
+do packets encapsulate frames? Explain your answer",CCN,Exam,10,9,10
+List 2 advantages and disadvantages of having internationsal standard protocol,CCN,Exam,2,2,2
+Diffeerentiate between guided and un guided media,CCN,Exam,5,5,5
+Define data transparency,CCN,Exam,1,1,1
+hHow do you distinguish between packet and message switching,CCN,Exam,5,4,5
+Two networks each provide reliable connection oriented services. One of them offers a reliable byte stream and the other offers a reliable message stream. Are these identical? If yes then how?,CCN,Exam,5,4,5
+Is the Nyquist theorem only for optical fibre or copper wire?,CCN,Exam,5,4,5
+How would you life be altered on considering applications of ccn in your daily routine,CCN,Exam,5,4,5
+Negotiate selective reject if seven frames are sent and frame three is not acknowledged,CCN,Exam,8,8,8
+Subnet base address: 192.168.1.0/24. Subnet it to new cidr length /26,CCN,Exam,8,8,8
+Prove by direct proof that the sum of an even integer and an odd integer is odd.,DS,Exercise,5,4,5
+Prove by direct proof that the  sum of two odd integers is even.,DS,Exercise,5,4,5
+Prove by direct proof that the sum of an integer and its square is even.,DS,Exercise,5,4,5
+Prove by direct proof that the product of two odd integers is odd. ,DS,Exercise,5,3,5
+Prove by direct proof that the square of an even number is divisible by 4.,DS,Exercise,5,4,5
+"Prove by direct proof that if if two integers are each divisible by some integer n, then their sum is also divisible by n.",DS,Exercise,5,3,5
+Prove by direct proof that the sum of two rational numbers is rational.,DS,Exercise,5,2,5
+"Prove by direct proof that if mn divides l, then m divides l, where m, n, l ? ?.",DS,Exercise,5,4,5
+Prove by contradiction that the sum of two odd integers is even.,DS,Exercise,5,4,5
+"Prove by contradiction that if a number added to itself gives the same number, then the number is 0.",DS,Exercise,5,4,5
+Prove by contradiction that there is no largest integer.,DS,Exercise,5,4,5
+Prove by contradiction that there is no smallest real number.,DS,Exercise,5,4,5
+Prove by contradiction that ?5 is irrational.,DS,Exercise,5,4,5
+"Prove by contradiction that  if x is a rational number, then ?2 + x is irrational.",DS,Exercise,5,4,5
+"Prove by contradiction that ?n ? ?, if n^2 is odd, then n is odd.",DS,Exercise,5,4,5
+"Prove by contradiction that  if m divides n but does not divide l, then m does not divide (n + l), where m, n, l ? ?.",DS,Exercise,5,4,5
+"Prove by contradiction that if m does not divide nl, then m does not divide n, where m, n, l ? ?.",DS,Exercise,5,4.5,5
+Prove by contradiction that there is no smallest integer.,DS,Exercise,8,8,8
+"Prove that ?n ? ?, n ^2 is even if and only if n is even.",DS,Exercise,5,5,5
+"Let m and n be two positive integers. Prove that if m and n are perfect squares, then the product mn is also a perfect square.",DS,Exercise,8,8,8
+"Prove/disprove: if m and n are perfect squares, then m + n is a perfect square.",DS,Exercise,5,4,5
+Prove that product of an even integer with any other integer is even. (Hint: Proof by cases),DS,Exercise,10,10,10
+"A large business group has entered into travelling service industry by launching a new business of Bus Services. The venture will offer routes between different cities of the country with the
+aim of providing safe and timely completion of journey. Following story card is developed for
+inquiries as well as booking by the customers for a particular route:Inquiries and Booking by the customers
+Inquiries will be made on the basis of either the source and destination cities, for days with start time of different services or about fares of different routes. For booking of a ruote, the user (a staff member) will be required to select the source and destination cities as well as the date of travelling for the customer. On submission of the
+information, the travel start time, different classes and their fares are displayed along with the number of available seats to the user. The users will then fill necessary data and submit the request to system for final booking. After validating the desired number of seats, the customer will then be asked about the payment mode (either
+cash or credit card). After payment, number of available seats will be updated accordingly and the system will be required to print the payment voucher.Break down the above story into different tasks and list them sequentially.
+Develop the different tasks cards accordingly.",SE,Assignment,3,2.5,3
+Develop the test case description corresponding to various tasks and subtasks.,SE,Assignment,3,2,3
+"For the given table,The table below sets out a number of activities, durations and dependencies. Assign
+milestones to all these tasks. Draw an activity network chart and a bar chart showing the project
+schedule. Also determine the Critical Path and its duration.",SE,Assignment,10,8,8.5
+"For the table given above, assume that a serious, unanticipated setback occurs and instead of
+taking 10 days, task T5 takes 40 days. Revise the activity chart accordingly, highlighting the new
+critical path. Draw up new bar chart showing how the project might be reorganized.",,,5,5,4
+"Effective software project management focuses on four Ps: People, Product, Process, and Project. Elaborate in detail.",SE,Assignment,4,3,4
+"Highlight the characteristics of three generic software team structures namely Democratic Decentralized (DD), Controlled Decentralized (CD) and Controlled Centralized (CC).",SE,Assignment,4,3,4
+Barry Boehm's W5H2 Principle provides a planning outline for project managers and software team.(a) List down those seven questions?(b)Draft a rough plan of your software engineering project according to this principle,SE,Assignment,4,4,4
+barry Boehm's W5H2 Principle provides a planning outline for project managers and software team.(a) List down those seven questions?(b)Draft a rough plan of your software engineering project according to this principle.,SE,Assignment,4,3,4
+"In 2000, a software house worked inconsistently on its product following software development
+process model which has relatively longer duration than the process models of today. The benefit
+of using longer process model was the visibility and well-defined stages. In 2003, they got the first
+client-based project based on mathematics named ""Graph plotter"". The management finally took
+uncertain decision to follow a process model with short span to deliver the product in increments
+(obviously with less but core functionalities) after fetching the requirements with help of mockups.
+The team was formulated based on 7 members. The team members were able to communicate
+with each other because of complexity and low modularity of project. Client communicated the flow
+to developer as: ""When an equation is given to the system, it solves the equation and shows the
+results of variables along with several types of graphs. The user selects a type of graph and graph
+will be plotted. User has the option to save or discard the graph"".
+The activities to carry out the project were planned as listed:
+TASK:Requirements,Gathering,Design,Coding,Unit Testing,Integration and Testing,Product Document,Release; DAYS :10,7,8,3,5,2,1; MILESTONES:SRS,Design Document,Code,Code,Code, Unit Testing and Testing After Integration,Product Document (Question: Apply process models (with reasons) & CMM level of organization in 2000 and 2003. Also give justification along with suggestions for improvement.",SE,Assignment,3,3,3
+Draw DFD (Level 0 and level-1) for Graph Plotter.,SE,Assignment,3,2.5,1
+Find critical path,SE,Assignment,3,2,2
+Apply the team structure with reasons. ,SE,Assignment,3,2,2
+"A software house gets the project to develop a hotel management system for a five-star hotel with
+administrative features. Administrator can add different rooms, update the status of room furniture,
+pictures of type of rooms, view / approve the pending request. The application contains additional
+features of online reservation, status of hotel rooms (as communicated by client). There are some
+features which are not clear at the moment. The software house visits hotel to get information
+regarding additional functionalities, environment of organization, behavior / level of individual users,
+The initial release is to be delivered after 3 months as defined in water fall model. After first release, the
+hotel management upgraded the systems in entire hotel. Few years later, the hotel management asked
+software house to implement a functionality of email to the clients for reservation status within 24 hours
+if certain user reserves hotel room online.
+Note: Maximum 4 lines for each part.
+A. Identify functional requirements.",SE,Assignment,3,2.5,3
+Was ethnography technique used in scenario? Justify.,SE,Assignment,3,3,3
+ Identify the types of non-functional requirements relevant to above scenario.,SE,Assignment,3,2,3
+Identify types of volatile requirements.,SE ,Assignment,3,2,2.5
+Top-down approach is good for hotel management application.Justify/deny with reasons,SE,Assignment,3,2,1
+define Front side bus,FCE,Quiz,1,1,1
+define  System clock,FCE,Quiz,1,0.5,1
+define SDRAM,FCE,Quiz,1,0,1
+Elaborate on the use of SCSI ports.,FCE,Quiz,2,2,2
+Explain three types of compact disks.,FCE,Quiz,3,0.5,3
+Change the given Boolean expression into equivalent circuit diagram and truth table: X = {(A xor B)C') + (AB)' + BC},COD,Quiz,3,3,0
+Elaborate on components of System Software with the help of diagram,FCE,Quiz,2,2,2
+Develop a program that takes input your full name from you through input function and generates the table of number (equal to letters in your full name excluding spaces). Don't use built-in length function.,CP,Mid term,3,2,3
+Develop a program that takes input (numbers) from user and print the largest number among them. dont use bultin function,CP,Mid term,3,3,3
+Compute binary equivalent of a decimal number given input by user. a. Write steps of decimal to binary conversion.,CP,Final,4,4,4
+b. Write program following the steps in part(a). in python,CP,Final,4,3,4
+c. Dry run the program to show its working on at least one input.,CP,Final,4,3,4
+"Few relations from MCQs based examination module of a uniPortal database are shown below: (Text in italics following '//' is added as brief explanation of the relation where needed)
+Course (Courseld, CourseCode, CourseName, CourseType)//Assume only two course types i.e. Theory & Practical,CoursePaper (Paperld, Courseld, PaperName, PaperDate, Paper Time, Paper Type)
+//Assume three paper types i.e. Quiz, Mid-Term & Final,PaperQuestion (Qld, Paperld, Question, QPoints, QTime, AddedOn)
+QTime is time allocated for a question to be answered: Question cannot be re-viewed once time expires
+QuestionOption (Optionld. Qld, Option Value, IsCorrect).You are required to write relational form of the following queries:
+a) List all the Papers of theory course having courseCode= 'CS-222' and rename the relation as ""CPapers""          b) List down all the questions of a course with Courseld-1
+c) List down all the Options of all the questions with Paperld-5 and rename the resulting relation as ""PaperQs   ",DBMS,Quiz,4,3,4
+"Define with example (Use Backside of the page for answer): Lattice structure, set difference operation,
+Natural join operation ",DBMS,Quiz,3,3,3
+Highlight the benefits of using Database System over the traditional File Processing System?,DBMS,Midterm,2,2,2
+"With suitable examples, differentiate between logical and physical data independence as an objective of 3-tier architecture? ",DBMS,Midterm,3,3,3
+"Write one major point of difference between the following:Instance VS Schema,Candidate Key VS Alternate Key,Naive VS Specialized Users ",DBMS,Midterm,4,4,4
+"Define in brief :Data Dictionary,Total Participation of Entity Set,Concurrency Control,Conceptual Schema ",DBMS,Midterm,4,4,4
+"Consider an organization that is assembling and selling computer items to different types of customers. The organization maintains record of its customers including customer ID, name (first and last), address and
+telephone number. For Domestic customer, National Identity Card (NIC) number is also recorded where for
+Business customer. National Sales-Tax Number (NTN) and Credit Limit is also recorded. The organization
+records data about its products as well as raw material including their ID, name and stock available for both.
+Each customer can order different products. The information recorded for each order includes Order
+Number, Customer Number, Order Date, Delivery Date and Name of different products ordered along with
+their quantities. The organization also records information about the quantity of each raw material required
+to manufacture each product.""
+Draw a neat and clean ER Diagram for the above Online Shopping System selling computer items.
+Properly show Entity sets, associated attributes, relationships & mapping cardinalities.
+Use the principle of generalization & specialization if necessary",DBMS,Midterm,7,6,4
+Distinguish between linear and nominear data structures. Give appropriate examples. ,DSA,Midterm,2,2,2
+Compare the operation mechanism of stack with linear arrays.,DSA,Midterm,1.5,1.5,1.5
+Give the definition of different word processing operations in your own words. ,DSA,Midterm,1.5,1.5,0.5
+"
+Examine the following ende segment to find its complexity expression and the big Oh expression:
+1 SUM=0
+2 FOR 1=1 TON
+FOR J=1 TO I
+SUM=SUM-J
+END FOR J
+END FOR I                                                                                                                                                                                                                        ANS=5*SUM",DSA,Midterm,1.5,1.5,1.5
+"Compare the following pairs of functions to confirm whether f(n) = O(g(n)) or omega(g(n)) or theta(g(n)). 
+i) f(n) = log ^4n. g(n) = logn.?n ii) f(n) = n²/?n, g(n) = n?n",DSA,Midterm,1.5,1.5,1.5
+Consider the function f(n)= 6n-16. Using definition 1. confirm that f(n) = O(n^3) ,DSA,Midterm,1.5,1.5,1.5
+"Consider the functions f(n)= 3n^3 logn +n^2 + 4 and g(n) n^2log^2n+ 6n+ 5. Let h(n) = f(n) x g(n). Using theorem 3, figure out the big Oh expression for h(n). ",DSA,Midterm,1.5,1,1.5
+identify the recurrence relation for quicksort algorithm and explore its best-case complexity expression.,DSA,Midterm,3,3,3
+"Suppose ITEM = 29. Apply the binary search algorithm to find the ITEM in following list of numbers.
+11, 17, 21, 29, 42, 46, 54, 56, 73, 77,92 ",DSA,Midterm,6,6,4
+"Show the working of algorithm for converting the following infix expression to poslix:-
+A*B* C +D-E /(G+H)",DSA,Midterm,2,2,2
+"Fill in the blanks by choosing most appropriate answer:-
+i. A binary tree can be partitioned into
+disjoint subsets.
+A 0 b. 1 c. 2",DSA,Quiz,1,1,1
+"Two nodes are
+a. Ancestors b. Descendants c Siblings d Leaves  ",DSA,Quiz,1,1,1
+" A strictly binary tree with 'n' leaves always contains
+a. 2n+2 b 2n c 2n -1 ",DSA,Quiz,1,1,1
+"If a node is the right child of the left child of root, then its level is : a. 2 b. 1 c. 3 d. 4  ",DSA,Quiz,1,1,1
+Expression tree is an example of strictly binary tree if only a. Unary b. Binary c. Ternary d. Arithmetic  ,DSA,Quiz,1,1,1
+The maximum level of any leaf is called the a. size depth b.depth c. length d. width ,DSA,Quiz,1,1,1
+"Insert tick (?) in appropriate columns to indicate TRUE or FALSE:-
+i. Tree is a recursive data structure.
+ii. A leaf is a node with no children.
+iii. Going from leaves to the root of the tree is called descending the tree.
+iv. The depth of an almost complete binary tree with 23 nodes is 5.
+v. There is only a single almost complete binary tree with n nodes.
+vi. The number of nodes at level 5 of complete binary tree will be 30. L
+vii. In an AVL tree, the depth of left and right subtrees of any node can differ
+by at most 1.
+viii. All tree operations can be performed in O(logn) in Binary Search,",DSA,Quiz,4,4,4
+"Two students S1 and S2 are often late to AI class. Student S1 is late 70% of the time while S2 is late 80% of the time.Assuming that their late comings are independent of each other, calculate the probability that:
+a) neither S1 nor S2 is late on a given day. 
+b) at least one of them is late on a given day. ",AI,Exercise,3,3,3
+"A bag contains two envelopes, one containing two black balls and the other one containing a black ball and a white ball. The white ball is
+ worth Rs. 1M. Black balls worth nothing. You randomly pick an envelope from the bag and randomly grab a ball from that envelope. 
+If that ball is black and you are given the option to switch the envelope, calculate the probability that you will get the white ball if you 
+switch the envelope.",AI,Exercise,4,3,2
+"A container of VLSI chips contains 3% defective chips. Each chip is tested before delivery. The tester itself is not totally reliable so that the chances of the tester indicating a chip being good when the chip is actually good are 94%. Also, the tester spots correctly a defective chip 95% of the time. If a tested device is indicated to be defective, calculate the probability that it is actually defective.",AI,Exercise,3,3,2.5
+"Inquiries to an on-line computer system arrive on five communication lines. The percentages of messages received 
+from lines 1, 2, 3, 4, 5, are 20, 30, 10, 15, and 25, respectively. The corresponding probabilities that the length of an 
+inquiry will exceed 100 characters are 0.4, 0.6, 0.2, 0.8, and 0.9. Calculate the probability that a randomly selected 
+inquiry will be longer than 100 characters.",AI,Exercise,4,3,4
+"The incidence of a disease (D) is about 5 per 100 persons. The probability of testing positive (T+) when someone has the disease is 0.99. The probability of testing negative (T-) when someone does not have the disease is 0.97. Compute (a) the probability of testing positive 
+i.e. P(T+) (b) that you have the disease, when the test is positive i.e. P(D|T+)",AI,Exercise,3,2.5,3
+Examine the claim: “Deep Blue is intelligent as it defeated the world chess champion Garry Kasparov.”,AI,Assignment,2,2,2
+Explore and provide a brief account of Eugene Goostman in your own words.,AI,Assignment,2,2,1.5
+Suppose Corona has a prevalence of 1/1000 people in a region. A test to detect this disease has a false positive rate of 5%. Assume that the test diagnoses correctly every person who has the disease. What is the chance that a randomly selected person found to have a positive test result actually has Corona?,AI,Assignment,4,4,4
+Write an SQL command To display the name of all employees whose manager is KING.,DBMS,Exercise,4,4,4
+Write a query to display the name and department number of all employees who were hired after 1982.,DBMS,Exercise,4,4,4
+How a traditional file system can be vulnerable to 'inconsistent data' ?,DBMS,Exam,2,1.5,2
+DBMS also cannot remove 100% redundancy (Give reason) ?,DBMS,Exam,2,2,2
+"Databases are considered to be self-describing', comment on the statement?",DBMS,Exam,2,2,2
+Discuss any two prime objectives of 3-tier architecture in DBMS?,DBMS,Exam,2,2,2
+Highlight the use and need of multilevel indices in databases?,DBMS,Exam,2,1.5,2
+"With suitable examples of your own, discuss what are update anomalies?",DBMS,Exam,2,2,2
+Why we always use positive charge as the test charge?,AP,Assignment,2,2,1
+What type of forces we could not apply work energy theorem and why?,AP,Assignment,2,2,2
+Why LASER light is not like ordinary white light?,AP,Exam,2,1.5,2
+"A sled of mass 15 kg is pulled along a frictionless surface by a cord. A constant force 36 N is applied to the cord. Analyse the motion if the 
+cord makes an angle of 25 degree with the horizontal.",AP,Assignment,4,3,3
+Define Hall's effect and also derive the equation for Hall's voltage.,AP,Assignment,4,3,2
+Explain the Young's double slit experiment with the help of diagram?,AP,Exam,4,4,2.5
+"Find the frequency, wavelength and momentum of photon whose energy is equal to rest mass energy of electron?",AP,Exam,4,3,3

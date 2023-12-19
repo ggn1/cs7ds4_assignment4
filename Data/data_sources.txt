@@ -1,0 +1,19 @@
+akc_breed_info.csv: https://data.world/len/dog-canine-breed-size-akc
+
+dog_breeds: https://www.kaggle.com/datasets/sujaykapadnis/dog-breeds?select=breed_traits.csv
+
+dog_inntelligence.csv: https://data.world/len/dog-size-intelligence-linked
+
+australian_street_trees.csv: https://www.kaggle.com/datasets/ishmaelkiptoo/australian-street-trees
+
+gold_rings.csv: https://www.kaggle.com/datasets/kevinhernandez20/gold-rings-dataset
+
+healthcare_insurance.csv: https://www.kaggle.com/datasets/willianoliveiragibin/healthcare-insurance
+
+human_vs_chatgpt.csv: https://www.kaggle.com/datasets/mujtabamatin/question-based-assessment-human-vs-chatgpt
+
+palmer_archipelago_penguin_data: https://www.kaggle.com/datasets/parulpandey/palmer-archipelago-antarctica-penguin-data?select=penguins_lter.csv
+
+wood_prices.csv: https://www.kaggle.com/datasets/swarajkhan/wood-prices-dataset
+
+world_educational_data.csv: https://www.kaggle.com/datasets/nelgiriyewithana/world-educational-data
