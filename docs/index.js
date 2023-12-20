@@ -46,7 +46,7 @@ const clearAllFilters = () => {
 }
 
 // LOAD DATA
-d3.csv('../data/dogs.csv', d3.autoType).then(data => {
+d3.csv('dogs.csv', d3.autoType).then(data => {
    console.log(data);
    d3.select('#button_clear').on('click', clearAllFilters);
    data.forEach(d => {
