@@ -447,7 +447,7 @@ const plotCareData = () => {
                   .attr('fill', 'black')
                   .attr('opacity', 0.3);
    gLegendAllBreeds.append('text')
-                  .text('All Breeds (Average)')
+                  .text('All Breeds Avg.')
                   .style('font-size', '14px')
                   .attr('transform', `translate(${18},${13})`);
    gLegendAllBreeds.attr('transform', `translate(${20},${0})`);
@@ -459,10 +459,10 @@ const plotCareData = () => {
                      .attr('fill', 'blue')
                      .attr('opacity', 0.3);
    gLegendSelectedBreed.append('text')
-                     .text('Selected Breed')
+                     .text('Selected Breed Avg.')
                      .style('font-size', '14px')
                      .attr('transform', `translate(${18},${13})`);
-   gLegendSelectedBreed.attr('transform', `translate(${widthSvg-120},${0})`);
+   gLegendSelectedBreed.attr('transform', `translate(${widthSvg-155},${0})`);
 
    // Plot grid lines.
    const diameter = 235-60;
@@ -1029,9 +1029,13 @@ const plotTrainData = () => {
          .attr('stroke', 'black')
          .attr('fill', 'yellow')
    gLegend.append('text')
-         .text('Obedience %')
+         .text('Obedience')
          .style('font-size', '12px')
-         .attr('transform', `translate(${widthSvg+marginSvg.left+35},${marginSvg.top+(heightSvg/3)+10})`);
+         .attr('transform', `translate(${widthSvg+marginSvg.left+35},${marginSvg.top+(heightSvg/3)+3})`);
+   gLegend.append('text')
+         .text('% (Avg.)')
+         .style('font-size', '12px')
+         .attr('transform', `translate(${widthSvg+marginSvg.left+35},${marginSvg.top+(heightSvg/3)+15})`);
    gLegend.append('text')
          .text('Selected Breed')
          .style('font-size', '9px')
@@ -1311,6 +1315,10 @@ const plotProtectData = () => {
    colorLegend.selectAll('rect')
             .attr('stroke', 'black');
    gLegend.append('text')
+            .text('Average')
+            .style('font-size', '12px')
+            .attr('transform', `translate(${widthSvg+marginSvg.left+35},${heightSvg+marginSvg.top-100})`)
+   gLegend.append('text')
          .text('Protectiveness')
          .style('font-size', '12px')
          .style('text-decoration', 'underline')
@@ -1504,19 +1512,19 @@ const plotPhysicalTraitsData = () => {
 
    // Add labels.
    gLabels.append('text')
-         .text('Height (Inches)')
+         .text('Avg. Height (Inches)')
          .style('font-style', 'italic')
          .style('letter-spacing', '1.5px')
          .style('word-spacing', '3px')
          .style('font-size', '12px')
-         .attr('transform', `translate(${(widthSvg/2)},${marginSvg.top+heightSvg+marginSvg.bottom-20})`);
+         .attr('transform', `translate(${(widthSvg/2.5)},${marginSvg.top+heightSvg+marginSvg.bottom-20})`);
    gLabels.append('text')
-         .text('Weight (Pounds)')
+         .text('Avg. Weight (Pounds)')
          .style('font-style', 'italic')
          .style('letter-spacing', '1.5px')
          .style('word-spacing', '3px')
          .style('font-size', '12px')
-         .attr('transform', `rotate(-90) translate(${-(heightSvg/1.5)},${20})`);
+         .attr('transform', `rotate(-90) translate(${-(heightSvg/1.45)},${20})`);
    gLabels.append('text')
          .style('font-style', 'italic')
          .style('letter-spacing', '1.5px')
