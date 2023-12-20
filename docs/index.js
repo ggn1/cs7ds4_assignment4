@@ -447,7 +447,7 @@ const plotCareData = () => {
                   .attr('fill', 'black')
                   .attr('opacity', 0.3);
    gLegendAllBreeds.append('text')
-                  .text('All Breeds Avg.')
+                  .text('All Breeds (Avg.)')
                   .style('font-size', '14px')
                   .attr('transform', `translate(${18},${13})`);
    gLegendAllBreeds.attr('transform', `translate(${20},${0})`);
@@ -459,10 +459,10 @@ const plotCareData = () => {
                      .attr('fill', 'blue')
                      .attr('opacity', 0.3);
    gLegendSelectedBreed.append('text')
-                     .text('Selected Breed Avg.')
+                     .text('Selected Breed')
                      .style('font-size', '14px')
                      .attr('transform', `translate(${18},${13})`);
-   gLegendSelectedBreed.attr('transform', `translate(${widthSvg-155},${0})`);
+   gLegendSelectedBreed.attr('transform', `translate(${widthSvg-130},${0})`);
 
    // Plot grid lines.
    const diameter = 235-60;
