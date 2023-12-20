@@ -9,7 +9,6 @@ var SELECTED_YEAR = '2020';
 var SELECTED_BREED = 'poodle';
 
 const clearAllFilters = () => {
-   console.log('filters cleared');
    Object.keys(DATA[SELECTED_BREED]).forEach(k => {
       if (!(k.includes('rank_') || k == 'image')) FILTERS[k] = null;
    });
@@ -84,22 +83,16 @@ const getFilteredData = () => {
 const plotRankBar = () => {
    var breeds = getFilteredData().map(d => d.breed);
    // Add plot.
-   const marginSvg = {
-      top: 25, 
-      right: 80,
-      bottom: 150,
-      left: 30
-   };
+   const marginSvg = {top: 15, right: 60, bottom: 160, left: 30};
    var widthSvg = breeds.length*20;
-   const widthDiv = 397 - marginSvg.left - marginSvg.right;
-   const heightSvg = 250 - marginSvg.bottom - marginSvg.top;
+   const widthDiv = 295 - marginSvg.left - marginSvg.right;
+   const heightSvg = 240 - marginSvg.bottom - marginSvg.top;
 
    // Plot x axis data (breeds).
    const divXAxis = d3.select('#plot_rank_bar')
                       .append('div')
-                      .style('float', 'right')
                       .style('overflow-x', 'scroll')
-                      .style("max-width", `${widthDiv}px`);
+                      .style("max-width", `${widthDiv+marginSvg.left}px`);
    const svgXAxis = divXAxis.append('svg');
    svgXAxis.attr("width", widthSvg + marginSvg.left)
          .attr("height", heightSvg + marginSvg.top + marginSvg.bottom)
@@ -113,36 +106,42 @@ const plotRankBar = () => {
                            .attr("transform", `translate(${marginSvg.left}, ${marginSvg.top+heightSvg})`);
    xAxisBreeds.selectAll('path').remove();
    xAxisBreeds.selectAll("text")
+            .style('font-size', '9px')
+            .style('font-style', 'italic')
+            .style('word-spacing', '1.5px')
+            .style('letter-spacing', '1px')
             .style("text-anchor", "end")
             .attr("transform", `rotate(-70) translate(${-10}, ${-10})`);
 
    // Plot y axis data (rankings).
    const divYAxis = d3.select('#plot_rank_bar')
-                      .append('div')
-                      .style('float', 'right');
+                      .append('div');
    const svgYAxis = divYAxis.append('svg')
                      .attr("width", marginSvg.right)
                      .attr("height", heightSvg + marginSvg.top + marginSvg.bottom)
    const gYAxis = svgYAxis.append('g')
-                        .attr("transform", `translate(${1},${marginSvg.top})`);
+                        .attr("transform", `translate(${0},${marginSvg.top})`);
    const yScale = d3.scaleLinear()
                   .domain(DATA_EXTENT.rank)
                   .range([heightSvg, 0]);
-   const yAxisRanks = gYAxis.call(d3.axisRight(yScale).ticks(5));
+   const yAxisRanks = gYAxis.call(d3.axisRight(yScale).ticks(3));
 
    // Add labels.
    const labelsXAxis = svgXAxis.append('g');
    const labelsYAxis = svgYAxis.append('g');
    labelsYAxis.append('text')
+            .style('font-style', 'italic')
+            .style('word-spacing', '2px')
+            .style('letter-spacing', '1.5px')
             .style('font-size', '10px')
-            .attr("transform", `translate(${12},${marginSvg.top+heightSvg+marginSvg.bottom-80})`)
-            .text('Breed ►');
+            .attr("transform", `translate(${5},${marginSvg.top+heightSvg+marginSvg.bottom-80})`)
+            .text('►Breed');
    labelsYAxis.append('text')
             .attr("transform", `rotate(90) translate(${marginSvg.top+(heightSvg/2)-10},${-marginSvg.right+12})`)
             .text('◄ Rank');
 
    // Add bars.
-   const gBars = svgXAxis.append('g');
+   const gBars = svgXAxis.append('g').lower();
    let selectedBreedBarXPos = 0;
    const draw = () => {
       // Get data.
@@ -241,7 +240,7 @@ const plotRankBar = () => {
                .attr('class', 'rank_label')
                .text(d => d.rank)
                .style("font-size", "10px")
-               .attr("transform", d => `translate(${xScale(d.breed)+marginSvg.left},${yScale(d.rank)+marginSvg.top-5})`)
+               .attr("transform", d => `translate(${xScale(d.breed)+marginSvg.left},${yScale(d.rank)+marginSvg.top-2})`)
                .transition()
                .duration(1000)
                .attr('opacity', 1);
@@ -259,12 +258,12 @@ const plotRankBar = () => {
 const plotRankLine = () => {
    const marginSvg = {
       top: 20, 
-      right: 0,
+      right: 10,
       bottom: 20,
       left: 30
    };
-   const widthSvg = 397 - marginSvg.left - marginSvg.right;
-   const heightSvg = 250 - marginSvg.bottom - marginSvg.top;
+   const widthSvg = 285 - marginSvg.left - marginSvg.right;
+   const heightSvg = 240 - marginSvg.bottom - marginSvg.top;
 
    // Add div inside the plot_breed_rank plot.
    const div = d3.select('#plot_rank_line')
@@ -289,6 +288,8 @@ const plotRankLine = () => {
    const xAxisElem = xAxis.call(d3.axisBottom(xScale));
    xAxisElem.selectAll('path').remove();
    const ticks = xAxisElem.selectAll('.tick');
+   ticks.selectAll('text')
+      .attr('transform', `rotate(-45) translate(-10)`)
    ticks.selectAll('line').remove();
    ticks.append('circle')
         .attr('class', 'yearCircle')
@@ -340,26 +341,8 @@ const plotRankLine = () => {
    // var avgData;
    const plot_breed_rank_change = () => {
       breedData = DATA[SELECTED_BREED];
-      // avgData = {};
-      // YEARS.forEach(year => avgData[year] = {'year':year, rank:0});
-      // Object.values(getFilteredData()).forEach((d) => {
-      //    YEARS.forEach(year => {
-      //       if (avgData[year].rank == 0) {
-      //          avgData[year].rank = d[`rank_${year}`];
-      //       } else {
-      //          avgData[year].rank = (avgData[year].rank+d[`rank_${year}`])/2;
-      //       }
-      //    });
-      // });
-
       let rankChangeBreed = [];
       YEARS.forEach((year) => rankChangeBreed.push({'year':year, 'rank':breedData[`rank_${year}`]}));
-      // let rankChangeAvg = Array.from(Object.values(avgData)).map(d => {
-      //    d.rank = Math.round((d.rank+Number.EPSILON)*10)/10;
-      //    return d;
-      // });
-
-      // const rankChangeExtent = d3.extent(rankChangeBreed.map(d => d.rank).concat(rankChangeAvg.map(d => d.rank)));
       const rankChangeExtent = d3.extent(rankChangeBreed.map(d => d.rank));
       const yScale = d3.scaleLinear()
                      .domain([rankChangeExtent[1], rankChangeExtent[0]])
@@ -389,28 +372,11 @@ const plotRankLine = () => {
          .style("font-size", "9px")
          .transition()
          .duration(1000)
-         .attr("transform", d => `translate(${xScale(d.year)+marginSvg.left},${yScale(d.rank)-3})`);
+         .attr("transform", d => `translate(${xScale(d.year)+(xScale.bandwidth()/2)+5},${yScale(d.rank)-3})`);
       
       yAxis.transition()
          .duration(1000)
          .call(d3.axisLeft(yScale));
-
-      // let pAvg = [];
-      // rankChangeAvg.forEach(yearRank => pAvg.push([
-      //    xScale(yearRank.year) + xScale.bandwidth()/2, 
-      //    yScale(yearRank.rank)
-      // ]));
-      // pAvg = d3.line()(pAvg);
-      // yPlot.selectAll('.avgRankChange')
-      //       .data([pAvg])
-      //       .join('path')
-      //       .attr('class', 'avgRankChange')
-      //       .attr("fill", "none")
-      //       .attr("stroke", "black")
-      //       .attr("stroke-width", 1.5)
-      //       .transition()
-      //       .duration(1000)
-      //       .attr("d", d => d);
    }
 
    plot_breed_rank_change();
@@ -430,6 +396,27 @@ const plotRankLine = () => {
          .attr('transform', `translate(${(marginSvg.left+widthSvg)-75},${marginSvg.top+heightSvg+marginSvg.bottom-15})`);
 }
 
+// PLOT IMAGE DATA
+const plotImageData = () => {
+   const draw = () => {
+      let url;
+      Object.entries(DATA).forEach(d => {
+         if (d[0] == SELECTED_BREED) {
+            url = d[1].image;
+         }
+      })
+
+      d3.select('#plot_image')
+      .style('background-image', `url(${url})`);
+
+      d3.select('#heading_image')
+      .html(`Selected Breed = ${SELECTED_BREED.toLocaleUpperCase()}`);
+   }
+   
+   UPDATE['image'] = draw;
+   draw();
+}
+
 // PLOT CARE DATA
 const plotCareData = () => {
    const features = ['Shedding Level', 'Grooming Frequency', 'Energy Level', 'Drooling Level', 'Mental Stimulation Needs'];
@@ -439,17 +426,46 @@ const plotCareData = () => {
    });
   
    // Add an svg inside a div.
-   const widthSvg = 196;
-   const heightSvg = 250;
+   const widthSvg = 300;
+   const heightSvg = 235;
    const marginSvg = {top: 0, right: 0, bottom: 0, left: 0};
    const svg = d3.select('#plot_care')
                .append('div')
                .append('svg')
                .attr('width', widthSvg-marginSvg.left-marginSvg.right)
                .attr('height', heightSvg-marginSvg.top-marginSvg.bottom);
+   const legend_svg = d3.select('#legend_care_home')
+                        .append('svg')
+                        .attr('width', widthSvg)
+                        .attr('height', 20);
+   // Add legend.
+   const gLegendAllBreeds = legend_svg.append('g');
+   gLegendAllBreeds.append('circle')
+                  .attr('cx',  6)
+                  .attr('cy', 6+2)
+                  .attr('r', 6)
+                  .attr('fill', 'black')
+                  .attr('opacity', 0.3);
+   gLegendAllBreeds.append('text')
+                  .text('All Breeds (Average)')
+                  .style('font-size', '14px')
+                  .attr('transform', `translate(${18},${13})`);
+   gLegendAllBreeds.attr('transform', `translate(${20},${0})`);
+   const gLegendSelectedBreed = legend_svg.append('g');
+   gLegendSelectedBreed.append('circle')
+                     .attr('cx',  6)
+                     .attr('cy', 6+2)
+                     .attr('r', 6)
+                     .attr('fill', 'blue')
+                     .attr('opacity', 0.3);
+   gLegendSelectedBreed.append('text')
+                     .text('Selected Breed')
+                     .style('font-size', '14px')
+                     .attr('transform', `translate(${18},${13})`);
+   gLegendSelectedBreed.attr('transform', `translate(${widthSvg-120},${0})`);
 
    // Plot grid lines.
-   const diameter = 140 ;
+   const diameter = 235-60;
    const radialScale = d3.scaleLinear()
                         .domain([0, 5])
                         .range([0, diameter/2]);
@@ -669,19 +685,6 @@ const plotCareData = () => {
             .text(d => d)
             .style('font-weight', 'bold')
             .style('font-size', '9px');
-
-   // Add legend.
-   const gLegend = svg.append('g');
-   gLegend.append('circle')
-         .attr('cx',  (widthSvg/4)+3)
-         .attr('cy', 14)
-         .attr('r', 7)
-         .attr('fill', 'blue')
-         .attr('opacity', 0.3);
-   gLegend.append('text')
-         .text('Selected Breed')
-         .style('font-size', '12px')
-         .attr('transform', `translate(${(widthSvg/4)+15},${18})`)
 }
 
 // PLOT HOME FRIENDLINESS DATA
@@ -691,8 +694,8 @@ const plotHomeData = () => {
    features.forEach(f => legend[f] = f.toLowerCase().split(' ').join('_'));
 
    // Add an svg inside a div.
-   const widthSvg = 196;
-   const heightSvg = 250;
+   const widthSvg = 300;
+   const heightSvg = 235;
    marginSvg = {top: 0, right: 0, bottom: 0, left: 0};
    const svg = d3.select('#plot_home')
                .append('div')
@@ -701,7 +704,7 @@ const plotHomeData = () => {
                .attr('height', heightSvg-marginSvg.top-marginSvg.bottom);
 
    // Plot grid lines.
-   const diameter = 140;
+   const diameter = 235-60;
    const radialScale = d3.scaleLinear()
                         .domain([0, 5])
                         .range([0, diameter/2]);
@@ -921,48 +924,14 @@ const plotHomeData = () => {
             .style('font-size', '9px')
             .style('font-weight', 'bold')
             .attr('fill', 'black');
-
-   // Add legend.
-   const gLegend = svg.append('g');
-   gLegend.append('circle')
-         .attr('cx',  (widthSvg/4))
-         .attr('cy', 14)
-         .attr('r', 7)
-         .attr('fill', 'black')
-         .attr('opacity', 0.3);
-   gLegend.append('text')
-         .text('All Breeds (Average)')
-         .style('font-size', '12px')
-         .attr('transform', `translate(${(widthSvg/4)+15},${18})`);
-}
-
-// PLOT IMAGE DATA
-const plotImageData = () => {
-   const draw = () => {
-      let url;
-      Object.entries(DATA).forEach(d => {
-         if (d[0] == SELECTED_BREED) {
-            url = d[1].image;
-         }
-      })
-
-      d3.select('#plot_image')
-      .style('background-image', `url(${url})`);
-
-      d3.select('#heading-image')
-      .html(`Selected Breed = ${SELECTED_BREED.toLocaleUpperCase()}`);
-   }
-   
-   UPDATE['image'] = draw;
-   draw();
 }
 
 // PLOT TRAINING DATA
 const plotTrainData = () => {
    // Add svg inside div.
-   const marginSvg = {top: 10, right: 100, bottom: 50, left: 50};
-   const widthSvg = 397 - marginSvg.left - marginSvg.right;
-   const heightSvg = 250  - marginSvg.top - marginSvg.bottom;
+   const marginSvg = {top: 10, right: 120, bottom: 40, left: 50};
+   const widthSvg = 580 - marginSvg.left - marginSvg.right;
+   const heightSvg = 235  - marginSvg.top - marginSvg.bottom;
    
    const div = d3.select('#plot_train')
                  .append('div');
@@ -984,6 +953,10 @@ const plotTrainData = () => {
             .remove();
    xAxisElem.selectAll('line')
             .remove();
+   xAxisElem.selectAll('.tick')
+            .attr('transform', d => {
+               return `translate(${xScale(d)+(xScale.bandwidth()/2)},${-5})`
+            });
 
    // Add y axis = working intelligence level.
    const gY = svg.append('g')
@@ -1029,35 +1002,41 @@ const plotTrainData = () => {
    gLegend.append('text')
          .text('Avg. No. of')
          .style('font-size', '12px')
-         .attr('transform', `translate(${widthSvg+marginSvg.left+8},${heightSvg+marginSvg.top-80})`)
+         .attr('transform', `translate(${widthSvg+marginSvg.left+30},${heightSvg+marginSvg.top-88})`)
    gLegend.append('text')
          .text('Repetitions')
          .style('font-size', '12px')
          .style('text-decoration', 'underline')
-         .attr('transform', `translate(${widthSvg+marginSvg.left+8},${heightSvg+marginSvg.top-65})`)
+         .attr('transform', `translate(${widthSvg+marginSvg.left+30},${heightSvg+marginSvg.top-73})`)
    gLegend.append('text')
          .text('Working Intelligence Level')
+         .style('font-style', 'italic')
+         .style('letter-spacing', '1.5px')
+         .style('word-spacing', '3px')
          .style('font-size', '12px')
-         .attr('transform', `rotate(-90) translate(${-(heightSvg-18)},${marginSvg.left-30})`);
+         .attr('transform', `rotate(-90) translate(${-(heightSvg+10)},${marginSvg.left-30})`);
    gLegend.append('text')
          .text('Trainability')
+         .style('font-style', 'italic')
+         .style('letter-spacing', '1.5px')
+         .style('word-spacing', '3px')
          .style('font-size', '12px')
-         .attr('transform', `translate(${widthSvg/1.6},${heightSvg+marginSvg.top+40})`)
+         .attr('transform', `translate(${widthSvg/1.8},${heightSvg+marginSvg.top+27})`)
    gLegend.append('circle')
          .attr('r', 10)
-         .attr('cx', (widthSvg+(marginSvg.right)-12))
-         .attr('cy', marginSvg.top+(heightSvg/3))
+         .attr('cx', widthSvg+marginSvg.left+20)
+         .attr('cy', marginSvg.top+(heightSvg/3)+5)
          .attr('stroke', 'black')
          .attr('fill', 'yellow')
    gLegend.append('text')
          .text('Obedience %')
          .style('font-size', '12px')
-         .attr('transform', `translate(${widthSvg+marginSvg.left+10},${heightSvg/2})`);
+         .attr('transform', `translate(${widthSvg+marginSvg.left+35},${marginSvg.top+(heightSvg/3)+10})`);
    gLegend.append('text')
          .text('Selected Breed')
          .style('font-size', '9px')
          .attr('fill', 'blue')
-         .attr('transform', `translate(${widthSvg+marginSvg.left+12},${8})`);
+         .attr('transform', `translate(${widthSvg+marginSvg.left+27},${9})`);
 
    var selected = {
       'trainability': {'value':null, 'element':null}, 
@@ -1177,19 +1156,20 @@ const plotTrainData = () => {
             .data(data)
             .join('text')
             .text(d => (d.reps_avg > 0) ? d.reps_avg : "")
-            .style('font-size', '7px')
+            .style('font-size', '9px')
             .style('font-weight', 'bold')
-            .attr('transform', d => `translate(${xScale(d.trainability)+2},${yScale(d.working_intelligence_level)+8})`);
+            .attr('transform', d => `translate(${xScale(d.trainability)+2},${yScale(d.working_intelligence_level)+10})`);
             
       gBreedSquare.selectAll('.trainBreedSquare')
                   .data(breedData)
                   .join('rect')
                   .attr('class', 'trainBreedSquare')
-                  .attr('x', widthSvg+marginSvg.left+marginSvg.right-85)
+                  .attr('x', widthSvg+marginSvg.left+20)
                   .attr('y', marginSvg.top+3)
                   .attr('width', xScale.bandwidth())
                   .attr('height', yScale.bandwidth())
-                  .attr('opacity', 1)
+                  .transition()
+                  .duration(1000)
                   .attr('stroke', 'blue')
                   .attr('stroke-width', '2')
                   .attr('fill', d => colorScaleSquares(d.reps_avg))
@@ -1197,9 +1177,9 @@ const plotTrainData = () => {
                   .data(breedData)
                   .join('text')
                   .text(d => d.reps_avg)
-                  .style('font-size', '7px')
+                  .style('font-size', '9px')
                   .style('font-weight', 'bold')
-                  .attr('transform', `translate(${widthSvg+marginSvg.left+marginSvg.right-82},${marginSvg.top+11})`);
+                  .attr('transform', `translate(${widthSvg+marginSvg.left+23},${marginSvg.top+13})`);
 
       // Pie chart
       const dataPie = [];
@@ -1251,14 +1231,14 @@ const plotTrainData = () => {
                .attr('d', d => arcGenerator(d))
                .attr('fill', (d, i) => colorScalePie(i))
                .attr('stroke', 'blue')
-               .attr('transform', `translate(${widthSvg+marginSvg.left+(marginSvg.right/2)-12},${marginSvg.top+20})`);
+               .attr('transform', `translate(${widthSvg+marginSvg.left+25+(xScale.bandwidth()/2)-5},${marginSvg.top+20})`);
       gBreedPie.selectAll('text')
                .data(breedData)
                .join('text')
-               .text(d => `${d.obedience_pc} %`)
-               .style('font-size', '7px')
+               .text(d => `${d.obedience_pc}%`)
+               .style('font-size', '9px')
                .style('font-weight', 'bold')
-               .attr('transform', `translate(${widthSvg+marginSvg.left+(marginSvg.right/2)-7},${marginSvg.top+yScale.bandwidth()})`);
+               .attr('transform', `translate(${widthSvg+marginSvg.left+xScale.bandwidth()},${marginSvg.top+yScale.bandwidth()})`);
    }
 
    draw();
@@ -1269,9 +1249,9 @@ const plotTrainData = () => {
 const plotProtectData = () => {
    // Add svg inside div.
    // Add svg inside div.
-   const marginSvg = {top: 10, right: 100, bottom: 50, left: 50};
-   const widthSvg = 397 - marginSvg.left - marginSvg.right;
-   const heightSvg = 250  - marginSvg.top - marginSvg.bottom;
+   const marginSvg = {top: 10, right: 120, bottom: 50, left: 50};
+   const widthSvg = 580 - marginSvg.left - marginSvg.right;
+   const heightSvg = 235  - marginSvg.top - marginSvg.bottom;
    
    const div = d3.select('#plot_protect')
                  .append('div');
@@ -1293,6 +1273,8 @@ const plotProtectData = () => {
             .remove();
    xAxisElem.selectAll('line')
             .remove();
+   xAxisElem.selectAll('.tick')
+            .attr('transform', d => `translate(${xScale(d)+(xScale.bandwidth()/2)},${-5})`);
 
    // Add y axis = working intelligence level.
    const gY = svg.append('g')
@@ -1322,7 +1304,7 @@ const plotProtectData = () => {
    const gLegend = svg.append("g");
    const colorLegend = gLegend.append('g')
                               .attr('id', 'train_legend_protectiveness')
-                              .attr('transform', `translate(${widthSvg+marginSvg.left+marginSvg.right-85},${heightSvg-45})`)
+                              .attr('transform', `translate(${widthSvg+marginSvg.left+45},${heightSvg-60})`)
                               .call(d3.legendColor().scale(colorScaleSquares));
    colorLegend.selectAll('text')
             .style('font-size', '12px');
@@ -1332,20 +1314,26 @@ const plotProtectData = () => {
          .text('Protectiveness')
          .style('font-size', '12px')
          .style('text-decoration', 'underline')
-         .attr('transform', `translate(${widthSvg+marginSvg.left+10},${heightSvg+marginSvg.top-65})`)
+         .attr('transform', `translate(${widthSvg+marginSvg.left+20},${heightSvg+marginSvg.top-85})`)
    gLegend.append('text')
          .text('Barking Level')
+         .style('font-style', 'italic')
+         .style('letter-spacing', '1.5px')
+         .style('word-spacing', '3px')
          .style('font-size', '12px')
-         .attr('transform', `rotate(-90) translate(${-heightSvg/1.3},${marginSvg.left-30})`);
+         .attr('transform', `rotate(-90) translate(${-(heightSvg/1.3)-5},${marginSvg.left-30})`);
    gLegend.append('text')
          .text('Openness to Strangers')
+         .style('font-style', 'italic')
+         .style('letter-spacing', '1.5px')
+         .style('word-spacing', '3px')
          .style('font-size', '12px')
-         .attr('transform', `translate(${widthSvg/2},${heightSvg+marginSvg.top+40})`);
+         .attr('transform', `translate(${widthSvg/2.2},${heightSvg+marginSvg.top+30})`);
    gLegend.append('text')
          .text('Selected Breed')
          .style('font-size', '9px')
          .attr('fill', 'blue')
-         .attr('transform', `translate(${widthSvg+marginSvg.left+12},${8})`);
+         .attr('transform', `translate(${widthSvg+marginSvg.left+27},${9})`);
 
    var selected = {
       'openness_to_strangers': {'value':null, 'element':null}, 
@@ -1467,11 +1455,12 @@ const plotProtectData = () => {
                   .data(breedData)
                   .join('rect')
                   .attr('class', 'protectBreedSquare')
-                  .attr('x', widthSvg+marginSvg.left+marginSvg.right-85)
+                  .attr('x', widthSvg+marginSvg.left+20)
                   .attr('y', marginSvg.top+3)
                   .attr('width', xScale.bandwidth())
                   .attr('height', yScale.bandwidth())
-                  .attr('opacity', 1)
+                  .transition()
+                  .duration(1000)
                   .attr('stroke', 'blue')
                   .attr('stroke-width', '2')
                   .attr('fill', d => colorScaleSquares(d.protectiveness))
@@ -1484,9 +1473,10 @@ const plotProtectData = () => {
 // PLOT PHYSICAL TRAITS DATA
 const plotPhysicalTraitsData = () => {
    // Add an svg inside a div.
-   const marginSvg = {top: 15, right: 150, bottom: 50, left: 50};
-   const widthSvg = 397 - marginSvg.left - marginSvg.right;
-   const heightSvg = 530 - marginSvg.top - marginSvg.bottom;
+   const marginSvg = {top: 50, right: 150, bottom: 50, left: 55};
+   const widthSvg = 400 - marginSvg.left - marginSvg.right;
+   const heightSvg = 750 - marginSvg.top - marginSvg.bottom;
+   const padding = 150;
    
    const div = d3.select('#plot_physical_traits')
                  .append('div');
@@ -1510,33 +1500,43 @@ const plotPhysicalTraitsData = () => {
 
    const sizes = ['teacup', 'toy', 'small', 'medium', 'large', 'giant'];
    const nSizes = sizes.length;
-   const padding = 110;
    const heightBandwidth = (heightSvg-((nSizes)*padding))/(nSizes+1);
 
    // Add labels.
    gLabels.append('text')
          .text('Height (Inches)')
+         .style('font-style', 'italic')
+         .style('letter-spacing', '1.5px')
+         .style('word-spacing', '3px')
          .style('font-size', '12px')
-         .attr('transform', `translate(${(widthSvg/2)+15},${marginSvg.top+heightSvg+marginSvg.bottom-20})`);
+         .attr('transform', `translate(${(widthSvg/2)},${marginSvg.top+heightSvg+marginSvg.bottom-20})`);
    gLabels.append('text')
          .text('Weight (Pounds)')
+         .style('font-style', 'italic')
+         .style('letter-spacing', '1.5px')
+         .style('word-spacing', '3px')
          .style('font-size', '12px')
-         .attr('transform', `rotate(-90) translate(${-(heightSvg/2)-30},${20})`);
+         .attr('transform', `rotate(-90) translate(${-(heightSvg/1.5)},${20})`);
    gLabels.append('text')
-         .text('Size')
-         .attr('transform', `rotate(90) translate(${heightSvg/2.3},${-(widthSvg+marginSvg.left+40)})`);
+         .style('font-style', 'italic')
+         .style('letter-spacing', '1.5px')
+         .style('word-spacing', '3px')
+         .text('▲ Size')
+         .attr('transform', `translate(${+marginSvg.left+widthSvg+15},${marginSvg.top+heightSvg+35})`);
+         // .text('◄ Size')
+         // .attr('transform', `rotate(90) translate(${heightSvg},${-(widthSvg+marginSvg.left+70)})`);
    sizes.forEach(() => {
       gLabels.selectAll('.size')
             .data(sizes)
             .join('text')
             .text(d => d)
-            .attr('transform', (d, i) => `rotate(90) translate(${(((5-i)*(heightBandwidth+padding))+15)},${-(widthSvg+marginSvg.left+20)})`);
+            .attr('transform', (d, i) => `rotate(90) translate(${(((5-i)*(heightBandwidth+padding))+60)},${-(widthSvg+marginSvg.left+20)})`);
    });
 
    const selectionLabel = gLabels.append('text')
                                  .style('font-weight', 'bold')
-                                 .style('font-size', '10px')
-                                 .attr('transform', `translate(${10},${marginSvg.top+heightSvg+marginSvg.bottom-5})`);// displays breed, height and weight
+                                 .style('font-size', '12px')
+                                 .attr('transform', `translate(${marginSvg.left-25},${20})`);// displays breed, height and weight
 
    const draw = () => {
       let data = Object.values(getFilteredData()).map(d => {
@@ -1673,7 +1673,7 @@ const plotPhysicalTraitsData = () => {
    const gLegend = svg.append("g");
    const colorLegend = gLegend.append('g')
                               .attr('id', 'colorLegend')
-                              .attr('transform', `translate(${widthSvg+marginSvg.left+60},${heightSvg+marginSvg.top+marginSvg.bottom-160})`)
+                              .attr('transform', `translate(${widthSvg+marginSvg.left+50},${marginSvg.top+135})`)
                               .call(d3.legendColor().scale(colorScale));
    colorLegend.selectAll('rect')
             .attr('stroke', 'black');
@@ -1735,14 +1735,14 @@ const plotPhysicalTraitsData = () => {
          .text('Coat Type')
          .style('font-size', '14px')
          .style('text-decoration', 'underline')
-         .attr('transform', `translate(${widthSvg+marginSvg.left+65},${heightSvg+marginSvg.top+marginSvg.bottom-170})`);
+         .attr('transform', `translate(${widthSvg+marginSvg.left+50},${marginSvg.top+120})`);
 
    gLegend.selectAll(".legendAppearanceShape")
          .data(['short', 'medium', 'long'])
          .join('path')
          .attr('class', 'legendAppearanceShape')
          .attr('d', d => d3.symbol().type(shapeScale(d)).size(200)())
-         .attr("transform", (d,i) => `translate(${(widthSvg+marginSvg.left+67)},${marginSvg.top+70-(25*i)})`)
+         .attr("transform", (d,i) => `translate(${(widthSvg+marginSvg.left+60)},${marginSvg.top+70-(25*i)})`)
          .attr('fill', 'black')
          // .attr('stroke', 'none');
    gLegend.selectAll('.legendAppearanceShape')
@@ -1799,7 +1799,7 @@ const plotPhysicalTraitsData = () => {
          .data(['short', 'medium', 'long'])
          .join('text')
          .attr('id', d => `legendAppearanceShapeText_${d}`)
-         .attr("x", widthSvg+marginSvg.left+85)
+         .attr("x", widthSvg+marginSvg.left+80)
          .attr("y", (d,i) => marginSvg.top+70-(25*i)+6)
          .text(d => d)
          .style("alignment-baseline", "middle");
@@ -1807,7 +1807,7 @@ const plotPhysicalTraitsData = () => {
          .text('Coat Length')
          .style('font-size', '14px')
          .style('text-decoration', 'underline')
-         .attr('transform', `translate(${widthSvg+marginSvg.left+56},${marginSvg.top})`);
+         .attr('transform', `translate(${widthSvg+marginSvg.left+50},${marginSvg.top})`);
 }
 
 // References: 
