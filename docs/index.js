@@ -1108,18 +1108,31 @@ const plotTrainData = () => {
             .attr('height', yScale.bandwidth())
             .attr('opacity', 1)
             .attr('stroke', d => (selected.trainability.value == d.trainability && selected.working_intelligence_level.value == d.working_intelligence_level) ? 'red' : 'black')
+            .attr('stroke-width', d => (selected.trainability.value == d.trainability && selected.working_intelligence_level.value == d.working_intelligence_level) ? '3px' : '1px')
             .attr('fill', d => (d.reps_avg > 0) ? colorScaleSquares(d.reps_avg) : 'white')
             .on('mouseover', function(e, d) {
                if (d.reps_avg != 0) { 
-                  d3.select(this).attr('stroke', 'orange');
+                  d3.select(this)
+                  .transition()
+                  .duration(500)
+                  .attr('stroke-width', '3px')
+                  .attr('stroke', 'orange');
                }
             })
             .on('mouseout', function(e, d) {
                if (d.reps_avg != 0) { 
                   if (!(selected.trainability.value == d.trainability && selected.working_intelligence_level.value == d.working_intelligence_level)) {
-                     d3.select(this).attr('stroke', 'black');
+                     d3.select(this)
+                     .transition()
+                     .duration(500)
+                     .attr('stroke-width', '1px')
+                     .attr('stroke', 'black');
                   } else {
-                     d3.select(this).attr('stroke', 'red');
+                     d3.select(this)
+                     .transition()
+                     .duration(500)
+                     .attr('stroke-width', '3px')
+                     .attr('stroke', 'red');
                   }
                }
             })
@@ -1128,15 +1141,27 @@ const plotTrainData = () => {
                   if (selected.trainability.value == d.trainability && selected.working_intelligence_level.value == d.working_intelligence_level) { // clicked last clicked square
                      selected.trainability.value = null;
                      selected.working_intelligence_level.value = null;
-                     d3.select(this).attr('stroke', 'black');
+                     d3.select(this)
+                     .transition()
+                     .duration(500)
+                     .attr('stroke-width', '1px')
+                     .attr('stroke', 'black');
                      selected.trainability.element = null;
                      selected.working_intelligence_level.value = null;
                   } else { // did not click last clicked square
                      selected.trainability.value = d.trainability;
                      selected.working_intelligence_level.value = d.working_intelligence_level;
-                     d3.select(this).attr('stroke', 'red');
+                     d3.select(this)
+                     .transition()
+                     .duration(500)
+                     .attr('stroke-width', '3px')
+                     .attr('stroke', 'red');
                      if (selected.trainability.element != null) {
-                        selected.trainability.element.attr('stroke', 'black');
+                        selected.trainability.element
+                        .transition()
+                        .duration(500)
+                        .attr('stroke-width', '1px')
+                        .attr('stroke', 'black');
                      }
                      selected.trainability.element = d3.select(this);
                      selected.working_intelligence_level.element = d3.select(this);
@@ -1411,18 +1436,31 @@ const plotProtectData = () => {
             .attr('height', yScale.bandwidth())
             .attr('opacity', 1)
             .attr('stroke', d => (selected.openness_to_strangers.value == d.openness_to_strangers && selected.barking_level.value == d.barking_level) ? 'red' : 'black')
+            .attr('stroke-width', d => (selected.openness_to_strangers.value == d.openness_to_strangers && selected.barking_level.value == d.barking_level) ? '3px' : '1px')
             .attr('fill', d => (d.protectiveness > 0) ? colorScaleSquares(d.protectiveness) : 'white')
             .on('mouseover', function(e, d) {
                if (d.protectiveness != 0) { 
-                  d3.select(this).attr('stroke', 'orange');
+                  d3.select(this)
+                  .transition()
+                  .duration(500)
+                  .attr('stroke-width', '3px')
+                  .attr('stroke', 'orange');
                }
             })
             .on('mouseout', function(e, d) {
                if(d.protectiveness != 0) { 
                   if (!(selected.openness_to_strangers.value == d.openness_to_strangers && selected.barking_level.value == d.barking_level)) {
-                     d3.select(this).attr('stroke', 'black');
+                     d3.select(this)
+                     .transition()
+                     .duration(500)
+                     .attr('stroke-width', '1px')
+                     .attr('stroke', 'black');
                   }  else {
-                     d3.select(this).attr('stroke', 'red');
+                     d3.select(this)
+                     .transition()
+                     .duration(500)
+                     .attr('stroke-width', '3px')
+                     .attr('stroke', 'red');
                   }
                }
             })
@@ -1431,15 +1469,27 @@ const plotProtectData = () => {
                   if (selected.openness_to_strangers.value == d.openness_to_strangers && selected.barking_level.value == d.barking_level) { // clicked last clicked square
                      selected.openness_to_strangers.value = null;
                      selected.barking_level.value = null;
-                     d3.select(this).attr('stroke', 'black');
+                     d3.select(this)
+                     .transition()
+                     .duration(500)
+                     .attr('stroke-width', '1px')
+                     .attr('stroke', 'black');
                      selected.openness_to_strangers.element = null;
                      selected.barking_level.value = null;
                   } else { // did not click last clicked square
                      selected.openness_to_strangers.value = d.openness_to_strangers;
                      selected.barking_level.value = d.barking_level;
-                     d3.select(this).attr('stroke', 'red');
+                     d3.select(this)
+                     .transition()
+                     .duration(500)
+                     .attr('stroke-width', '3px')
+                     .attr('stroke', 'red');
                      if (selected.openness_to_strangers.element != null) {
-                        selected.openness_to_strangers.element.attr('stroke', 'black');
+                        selected.openness_to_strangers.element
+                        .transition()
+                        .duration(500)
+                        .attr('stroke-width', '1px')
+                        .attr('stroke', 'black');
                      }
                      selected.openness_to_strangers.element = d3.select(this);
                      selected.barking_level.element = d3.select(this);
