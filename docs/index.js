@@ -46,7 +46,8 @@ const clearAllFilters = () => {
 }
 
 // LOAD DATA
-d3.csv('dogs.csv', d3.autoType).then(data => {
+d3.csv('../data/dogs.csv', d3.autoType).then(data => {
+   console.log(data);
    d3.select('#button_clear').on('click', clearAllFilters);
    data.forEach(d => {
       DATA[d.breed] = d;
@@ -1030,11 +1031,11 @@ const plotTrainData = () => {
          .attr('fill', 'yellow')
    gLegend.append('text')
          .text('Obedience')
-         .style('font-size', '12px')
+         .style('font-size', '11px')
          .attr('transform', `translate(${widthSvg+marginSvg.left+35},${marginSvg.top+(heightSvg/3)+3})`);
    gLegend.append('text')
-         .text('% (Avg.)')
-         .style('font-size', '12px')
+         .text('Probability (Avg.)')
+         .style('font-size', '11px')
          .attr('transform', `translate(${widthSvg+marginSvg.left+35},${marginSvg.top+(heightSvg/3)+15})`);
    gLegend.append('text')
          .text('Selected Breed')
@@ -1063,7 +1064,7 @@ const plotTrainData = () => {
       
       for (let i=1; i<=5; i++) {
          for (let j=1; j<=5; j++) {
-            data[[i,j]] = {'reps_avg':0, 'obedience_pc':0};
+            data[[i,j]] = {'reps_avg':0, 'obedience_prob':0};
          }
       }
       
@@ -1071,15 +1072,15 @@ const plotTrainData = () => {
          const idx = [d.trainability, d.working_intelligence_level];
          if (data[idx].reps_avg == 0) data[idx].reps_avg = d.reps_avg;
          else data[idx].reps_avg = (data[idx].reps_avg+d.reps_avg)/2;
-         if (data[idx].obedience_pc == 0) data[idx].obedience_pc = d.obedience_pc;
-         else data[idx].obedience_pc = (data[idx].obedience_pc+d.obedience_pc)/2;
+         if (data[idx].obedience_prob == 0) data[idx].obedience_prob = d.obedience_prob;
+         else data[idx].obedience_prob = (data[idx].obedience_prob+d.obedience_prob)/2;
       });
 
       Object.values(DATA).forEach(d => {
          if (d.breed == SELECTED_BREED) {
             breedData.push({
                'reps_avg': d.reps_avg,
-               'obedience_pc': d.obedience_pc,
+               'obedience_prob': d.obedience_prob,
                'trainability': d.trainability,
                'working_intelligence_level': d.working_intelligence_level
             });
@@ -1091,7 +1092,7 @@ const plotTrainData = () => {
          return {
             'trainability': d[0][0],
             'working_intelligence_level': d[0][1],
-            'obedience_pc': d[1].obedience_pc,
+            'obedience_prob': d[1].obedience_prob,
             'reps_avg': d[1].reps_avg
          }
       });
@@ -1188,12 +1189,12 @@ const plotTrainData = () => {
       // Pie chart
       const dataPie = [];
       data.forEach(d => {
-         if (d.obedience_pc > 0) {
+         if (d.obedience_prob > 0) {
             dataPie.push({
                'xy':[d.trainability, d.working_intelligence_level],
                'pie': [
-                  {'property': 'pc', 'value': d.obedience_pc},
-                  {'property': '100-pc', 'value': (d.obedience_pc != 50) ? 100-d.obedience_pc : 49.9}
+                  {'property': 'pc', 'value': d.obedience_prob},
+                  {'property': '100-pc', 'value': (d.obedience_prob != 50) ? 100-d.obedience_prob : 49.9}
                ]
             });
          }
@@ -1224,8 +1225,8 @@ const plotTrainData = () => {
       gBreedPie.selectAll('path')
                .data(() => {
                   let dPie = d3.pie().value(d => d.value)([
-                     {'property': 'pc', 'value': breedData[0].obedience_pc},
-                     {'property': '100-pc', 'value': 100-breedData[0].obedience_pc}
+                     {'property': 'pc', 'value': breedData[0].obedience_prob},
+                     {'property': '100-pc', 'value': 100-breedData[0].obedience_prob}
                   ]);
                   return dPie;
                })
@@ -1239,7 +1240,7 @@ const plotTrainData = () => {
       gBreedPie.selectAll('text')
                .data(breedData)
                .join('text')
-               .text(d => `${d.obedience_pc}%`)
+               .text(d => `${d.obedience_prob}%`)
                .style('font-size', '9px')
                .style('font-weight', 'bold')
                .attr('transform', `translate(${widthSvg+marginSvg.left+xScale.bandwidth()},${marginSvg.top+yScale.bandwidth()})`);
