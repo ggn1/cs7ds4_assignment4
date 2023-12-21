@@ -1,2 +1,0 @@
-Please find link to visualization here: 
-https://ggn1.github.io/cs7ds4_assignment4/
