@@ -1,0 +1,17 @@
+This analytical juxtaposed multi-faceted interactive animated exploratory visualization catpures 32 attributes related to 105 dog breeds regarding physique, needs, temperament and popularity.
+
+Underlying data compiled from 4 seperate tables is complex with high variety and heterogeniety.
+
+The dashboard is divided into 6 sections. Color blue is always ONLY associated with the selected breed. All plots are interactive and facilitate filteration using AND logic. Data can be filtered based on breed, year, size, coat length, coat type, care needs, home suitability, trainig or protection parameters. Applied filters may cleared individually by clicking again or all at once using the clear all button.
+
+Height and weight of every breed is encoded using a scatter plot that's divided into smaller multiples based on size such that marker shape encodes coat length and color encodes coat type. ]Translucency and popout effects minimize impact of overlapping.
+
+A sorted, horizontally sliced, bar plot and line plot idioms encode breed popularity ranking. Data is displayed 1 year at a time with it being possible to switch between the 8 years.
+
+Training and protection related parameters are encoded using a 2D matrix such that average no. of repetitions for all breeds with a particular intelligence and trainability level is encoded using hue while their obedience probability is captured via a pie plot as marker.
+
+Star plots are used to encode needs and home suitability parameters of both the selected dog breed and average of all or filtered breeds.
+
+The selected breed name and image is provided for more clarity and information about physique.
+
+With superiour filteration facilities and all attributes in the dataset displayed using suitable idioms, the dashboard supports multiple tasks. For example, users can explore and query for reasons as to why some breeds may be ranked higher than others. They can compare between 2 breeds or 1 breed and average of some others. They may also spot a trend, correlations, clustering or outliers.
