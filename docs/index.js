@@ -1554,7 +1554,7 @@ const plotPhysicalTraitsData = () => {
    gAxes = svg.append('g')
               .attr('transform', `translate(${marginSvg.left},${marginSvg.top})`);
    const colorScale = d3.scaleOrdinal() // coat type
-                        .range(['beige', 'green', 'orange', 'yellow', 'magenta', 'cyan', 'pink', 'gray']); 
+                        .range(['beige', 'green', 'orange', 'yellow', 'magenta', 'cyan', 'brown', 'gray']); 
    const shapeScale = d3.scaleOrdinal()
                         .domain(['short', 'medium', 'long'])
                         .range([d3.symbolCircle, d3.symbolTriangle, d3.symbolSquare]);
