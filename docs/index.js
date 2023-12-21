@@ -138,7 +138,7 @@ const plotRankBar = () => {
             .attr("transform", `translate(${5},${marginSvg.top+heightSvg+marginSvg.bottom-80})`)
             .text('►Breed');
    labelsYAxis.append('text')
-            .attr("transform", `rotate(90) translate(${marginSvg.top+(heightSvg/2)-10},${-marginSvg.right+12})`)
+            .attr("transform", `rotate(90) translate(${marginSvg.top+(heightSvg/2)-10},${-marginSvg.right+19})`)
             .text('◄ Rank');
 
    // Add bars.
@@ -1947,4 +1947,4 @@ const plotPhysicalTraitsData = () => {
 }
 
 // References: 
-// Spider Plot = https://yangdanny97.github.io/blog/2019/03/01/D3-Spider-Chart.
+// Star Plot = https://yangdanny97.github.io/blog/2019/03/01/D3-Spider-Chart.
