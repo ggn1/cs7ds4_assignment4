@@ -14,6 +14,7 @@ const clearAllFilters = () => {
    });
    if ('clear_train' in UPDATE) UPDATE.clear_train();
    if ('clear_protect' in UPDATE) UPDATE.clear_protect();
+   if ('clear_size' in UPDATE) UPDATE.clear_size();
    if ('rank_bar' in UPDATE) UPDATE.rank_bar();
    if ('rank_line' in UPDATE) UPDATE.rank_line();
    if ('home_spider' in UPDATE) UPDATE.home_spider();
@@ -170,6 +171,7 @@ const plotRankBar = () => {
                      .style('font-style', 'italic')
                      .style('color', 'blue');
                   d3.select('#heading_rank')
+                  .select('span')
                   .html(`Breed = ${d.toLocaleUpperCase()}`);
                })
                .on('mouseout', function (event) {
@@ -179,6 +181,7 @@ const plotRankBar = () => {
                      .style('font-style', 'normal')
                      .style('color', 'gray');
                      d3.select('#heading_rank')
+                     .select('span')
                      .html('Popularity Ranking');
                   }
                })
@@ -1585,15 +1588,21 @@ const plotPhysicalTraitsData = () => {
          .style('word-spacing', '3px')
          .text('▲ Size')
          .attr('transform', `translate(${+marginSvg.left+widthSvg+15},${marginSvg.top+heightSvg+35})`);
-         // .text('◄ Size')
-         // .attr('transform', `rotate(90) translate(${heightSvg},${-(widthSvg+marginSvg.left+70)})`);
-   sizes.forEach(() => {
-      gLabels.selectAll('.size')
-            .data(sizes)
-            .join('text')
-            .text(d => d)
-            .attr('transform', (d, i) => `rotate(90) translate(${(((5-i)*(heightBandwidth+padding))+60)},${-(widthSvg+marginSvg.left+20)})`);
-   });
+   
+   const draw_size_labels = () => {
+      sizes.forEach(() => {
+         gLabels.selectAll('.sizeLabel')
+               .data(sizes)
+               .join('text')
+               .attr('class', 'sizeLabel')
+               .text(d => d)
+               .attr('fill', d => {
+                  (d == FILTERS.size) ? 'red' : 'black'
+               })
+               .attr('transform', (d, i) => `rotate(90) translate(${(((5-i)*(heightBandwidth+padding))+60)},${-(widthSvg+marginSvg.left+20)})`);
+      });
+   }
+   draw_size_labels();
 
    const selectionLabel = gLabels.append('text')
                                  .style('font-weight', 'bold')
@@ -1728,7 +1737,8 @@ const plotPhysicalTraitsData = () => {
    // Filter mechanism.
    const selected = {
       'coat_type': {'value':null, 'element':null}, 
-      'coat_length': {'value':null, 'element':null}
+      'coat_length': {'value':null, 'element':null},
+      'size': {'value':null, 'element':null}
    };
 
    // Add legends.
@@ -1793,6 +1803,70 @@ const plotPhysicalTraitsData = () => {
                UPDATE.protect_mat();
                UPDATE.appearance_scatter();
             });
+
+   d3.selectAll('.sizeLabel')
+   .on('mouseover', function (event, d) {
+      d3.select(this)
+      .transition()
+      .duration(500)
+      .attr('fill', 'orange');
+   })
+   .on('mouseout', function (event, d) {
+      if (selected.size.value == d) {
+         d3.select(this)
+         .transition()
+         .duration(500)
+         .attr('fill', 'red');
+      } else {
+         d3.select(this)
+         .transition()
+         .duration(500)
+         .attr('fill', 'black');
+      }
+   }).on('click', function (event, d) {
+      let element = d3.select(this);
+      if(selected.size.value == null) {
+         selected.size.element = element;
+         selected.size.value = d;
+         element.transition()
+         .duration(500)
+         .attr('fill', 'red');
+      } else if (selected.size.value != d) {
+         selected.size.element.transition()
+         .duration(500)
+         .attr('fill', 'black');
+         selected.size.element = element;
+         selected.size.value = d;
+         element.transition()
+         .duration(500)
+         .attr('fill', 'red');
+      } else {
+         selected.size.element = null;
+         selected.size.value = null;
+         element.transition()
+         .duration(500)
+         .attr('fill', 'black');
+      }
+
+      Object.entries(selected).forEach(([k, v]) => FILTERS[k] = v.value);
+               
+      UPDATE.rank_bar();
+      UPDATE.rank_line();
+      UPDATE.care_spider();
+      UPDATE.home_spider();
+      UPDATE.image();
+      UPDATE.train_mat();
+      UPDATE.protect_mat();
+      UPDATE.appearance_scatter();
+   });
+
+   const clearSelectedSize = () => {
+      selected.size.value = null;
+      selected.size.element = null;
+      draw_size_labels();
+   }
+   UPDATE['clear_size'] = clearSelectedSize;
+
    gLegend.append('text')
          .text('Coat Type')
          .style('font-size', '14px')
