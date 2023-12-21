@@ -255,7 +255,7 @@ const plotRankBar = () => {
       if ('care_spider' in UPDATE) UPDATE.care_spider();
       if ('train_mat' in UPDATE) UPDATE.train_mat();
       if ('protect_mat' in UPDATE) UPDATE.protect_mat();
-      if ('appearance_scatter' in UPDATE) UPDATE.appearance_scatter();
+      // if ('appearance_scatter' in UPDATE) UPDATE.appearance_scatter();
    }
 
    draw();
