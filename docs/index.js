@@ -47,7 +47,6 @@ const clearAllFilters = () => {
 
 // LOAD DATA
 d3.csv('dogs.csv', d3.autoType).then(data => {
-   console.log(data);
    d3.select('#button_clear').on('click', clearAllFilters);
    data.forEach(d => {
       DATA[d.breed] = d;
@@ -166,10 +165,12 @@ const plotRankBar = () => {
                .selectAll('.tick')
                .style('color', d => d == SELECTED_BREED ? 'blue' : 'gray');
       xAxisBreeds.selectAll('.tick')
-               .on('mouseover', function (event) {
+               .on('mouseover', function (event, d) {
                   d3.select(this)
                      .style('font-style', 'italic')
                      .style('color', 'blue');
+                  d3.select('#heading_rank')
+                  .html(`Breed = ${d.toLocaleUpperCase()}`);
                })
                .on('mouseout', function (event) {
                   let breed = event.target.innerHTML
@@ -177,6 +178,8 @@ const plotRankBar = () => {
                      d3.select(this)
                      .style('font-style', 'normal')
                      .style('color', 'gray');
+                     d3.select('#heading_rank')
+                     .html('Popularity Ranking');
                   }
                })
                .on('click', function (event) {
